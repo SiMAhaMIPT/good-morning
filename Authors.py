@@ -3,14 +3,14 @@ FPS = 60
 pg.init()
 screen = pg.display.set_mode([1000, 700])
 
-ground = pg.image.load("LeaderBoard/semmer.jpg")
+ground = pg.image.load("Images/semmer.jpg")
 ground = pg.transform.smoothscale(ground, screen.get_size())
 
-img_SiMA = pg.image.load("LeaderBoard/SiMA.png")
+img_SiMA = pg.image.load("Images/SiMA.png")
 img_SiMA = pg.transform.smoothscale(img_SiMA, (200, 200))
-img_ShA = pg.image.load("LeaderBoard/ShA.png")
+img_ShA = pg.image.load("Images/ShA.png")
 img_ShA = pg.transform.smoothscale(img_ShA, (200, 200))
-img_pin = pg.image.load("LeaderBoard/pin.png")
+img_pin = pg.image.load("Images/pin.png")
 img_pin = pg.transform.smoothscale(img_pin, (252, 200))
 
 def display_score():
