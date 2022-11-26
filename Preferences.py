@@ -1,5 +1,5 @@
 import pygame
-HEIGHT = 600
+HEIGHT = 700
 WIDTH = 1000
 from button import Button
 RED = (255,0,0)

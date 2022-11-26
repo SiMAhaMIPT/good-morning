@@ -5,19 +5,20 @@ from button import Button
 class Menu:
     
     def __init__(self, screen : pygame.Surface) -> None:
+        self.action = 0
         self.screen = screen
         rect = screen.get_rect() 
         width = 650
         height = 60
         paddings = 20
         self.button = []
-        self.button.append(Button((rect.center[0], rect.center[1],width,height), (27, 128, 42, 100), self.wtf,
+        self.button.append(Button((rect.center[0], rect.center[1],width,height), (27, 128, 42, 100), self.doNothing,
                              text='Играть', **Preferences.BUTTON_STYLE))
-        self.button.append(Button((rect.center[0], rect.center[1],width,height), (27, 128, 42, 100), self.wtf,
+        self.button.append(Button((rect.center[0], rect.center[1],width,height), (27, 128, 42, 100), self.doNothing,
                              text='Настройки', **Preferences.BUTTON_STYLE))
-        self.button.append(Button((rect.center[0], rect.center[1],width,height), (27, 128, 42, 100), self.wtf,
+        self.button.append(Button((rect.center[0], rect.center[1],width,height), (27, 128, 42, 100), self.openAuthors,
                              text='Авторы', **Preferences.BUTTON_STYLE))
-        self.button.append(Button((rect.center[0], rect.center[1],width,height), (27, 128, 42, 100), self.wtf,
+        self.button.append(Button((rect.center[0], rect.center[1],width,height), (27, 128, 42, 100), exit,
                              text='Выход', **Preferences.BUTTON_STYLE))
         self.gameName = pygame.font.Font("Roboto-Regular.ttf", 76).render("The_BBbW", True, (230, 230, 230))
         center = rect.center
@@ -42,7 +43,12 @@ class Menu:
         vc[1] -= 200
         self.screen.blit(self.gameName, vc)
         
-    def wtf(self):
-        print("Hell")
+    def callback(self):
+        return self.action
+        
+    def openAuthors(self):
+        self.action = 'authors'
+    def doNothing(self):
+        pass
     
     
