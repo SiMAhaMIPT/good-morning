@@ -21,6 +21,6 @@ while True:
         if event.type == pygame.QUIT:
             exit()
     
-    wManager.get_window().draw()
+    wManager.get_window().draw(surface)
     wManager.open_window(wManager.get_window().callback())
     pygame.display.update()

@@ -1,8 +1,9 @@
 import pygame
 import Preferences
 from button import Button
-    
-class Menu:
+from Window import Window
+
+class Menu(Window):
     
     def __init__(self, screen : pygame.Surface) -> None:
         self.action = 0
@@ -33,15 +34,15 @@ class Menu:
         for b in self.button:
             b.check_event(event)
         
-    def draw(self):
-        self.screen.blit(self.bg, (0,0))
+    def draw(self, surface):
+        surface.blit(self.bg, (0,0))
         s = pygame.Surface((Preferences.WIDTH, Preferences.HEIGHT), pygame.SRCALPHA)
         for b in self.button:
             b.update(s)
-        self.screen.blit(s, (0, 0))
-        vc = self.gameName.get_rect(center = self.screen.get_rect().center)
+        surface.blit(s, (0, 0))
+        vc = self.gameName.get_rect(center = surface.get_rect().center)
         vc[1] -= 200
-        self.screen.blit(self.gameName, vc)
+        surface.blit(self.gameName, vc)
         
     def callback(self):
         return self.action
