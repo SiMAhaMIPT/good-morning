@@ -1,5 +1,7 @@
 import pygame as pg
 from Window import Window
+from button import Button
+import Preferences
 if(__name__=='__main__'):
     FPS = 60
     pg.init()
@@ -10,8 +12,16 @@ my_font_min = pg.font.SysFont('Comic Sans MS', 35)
 my_font_max = pg.font.SysFont('Comic Sans MS', 50)
 
 class Authors(Window):
-    def __init__(self, surface):
+    
+    def doNothing(self):
         pass
+    
+    def __init__(self, surface):
+        rect : pg.Rect = surface.get_rect()
+        self.action = 0
+        rb = pg.image.load('Images/return-arrow.png')
+        self.button = Button((rect.topright[0] - 100, rect.topright[1] + 30,70,70), (27, 128, 42, 100), self.openMenu
+                             , **Preferences.BUTTON_STYLE, texture=rb)
     def draw(self, surface):
         ground = pg.image.load("Images/semmer.jpg")
         ground = pg.transform.smoothscale(ground, surface.get_size())
@@ -26,8 +36,8 @@ class Authors(Window):
         surface.blit(img_SiMA, [75, 20])
         surface.blit(img_ShA, [75, 230])
         surface.blit(img_pin, [10, 440])
-        
         self.display_score(surface)
+        self.button.update(surface)
 
     def display_score(self, surface):
         """Отображает текст на экране"""
@@ -58,10 +68,15 @@ class Authors(Window):
 
 
     def check(self, event):
-        pass
+        self.button.check_event(event)
     
     def callback(self):
-        pass
+        r = self.action
+        self.action = 0
+        return r
+    
+    def openMenu(self):
+        self.action = 'menu'
 
 if __name__=='__main__':
     screen_1 = Authors(screen)

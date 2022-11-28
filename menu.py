@@ -45,7 +45,9 @@ class Menu(Window):
         surface.blit(self.gameName, vc)
         
     def callback(self):
-        return self.action
+        r = self.action
+        self.action = 0
+        return r
         
     def openAuthors(self):
         self.action = 'authors'

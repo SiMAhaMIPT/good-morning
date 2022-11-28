@@ -13,6 +13,9 @@ class Button(object):
         self.clicked_text = None
         self.process_kwargs(kwargs)
         self.render_text()
+        
+        if not(self.texture == None):
+            self.texture = pg.transform.scale(self.texture, (self.rect.width * 0.8, self.rect.height * 0.8)) 
 
     def process_kwargs(self,kwargs):
         """Various optional customization you can change by passing kwargs."""
@@ -25,7 +28,8 @@ class Button(object):
                     "hover_font_color" : None,
                     "clicked_font_color" : None,
                     "click_sound" : None,
-                    "hover_sound" : None}
+                    "hover_sound" : None,
+                    "texture" : None}
         for kwarg in kwargs:
             if kwarg in settings:
                 settings[kwarg] = kwargs[kwarg]
@@ -86,6 +90,8 @@ class Button(object):
                 text = self.hover_text
         surface.fill((0, 0, 0, color[3]),self.rect)
         surface.fill(color,self.rect.inflate(-4,-4))
+        if not(self.texture == None):
+            surface.blit(self.texture, self.texture.get_rect(center = self.rect.center))
         if self.text:
             text_rect = text.get_rect(center=self.rect.center)
             surface.blit(text,text_rect)
