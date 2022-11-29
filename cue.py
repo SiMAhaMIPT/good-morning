@@ -82,7 +82,10 @@ class Cue(pygame.sprite.Sprite):
     def draw_lines(self, game_state, target_ball, angle, color):
         cur_pos = np.copy(target_ball.ball.pos)
         diff = np.array([math.sin(angle), math.cos(angle)])
-        pass
+        while config.resolution[1] > cur_pos[1] > 0 and config.resolution[0] > cur_pos[0] > 0:
+            cur_pos += config.aiming_line_length * diff * 2
+            pygame.draw.line(game_state.canvas.surface, color, cur_pos,
+                             (cur_pos + config.aiming_line_length * diff))
 
 
 
