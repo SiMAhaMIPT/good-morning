@@ -15,7 +15,7 @@ class Ball():
         self.pos = np.zeros(2, dtype=float)
         self.velocity = np.zeros(2, dtype=float)
         self.surface=0
-        self.add_friction=add_friction
+        self.add_friction=add_friction=0
 
     def apply_force(self, force, time=1):
         self.velocity += (force / config.ball_mass) * time
