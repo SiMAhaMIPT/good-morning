@@ -11,13 +11,13 @@ class Screen_SiMA:
     def __init__(self, screen):
         self.screen = screen
     def draw(self):
-        ground = pg.image.load("LeaderBoard/semmer.jpg")
+        ground = pg.image.load("Authors/semmer.jpg")
         ground = pg.transform.smoothscale(ground, self.screen.get_size())
-        img_SiMA = pg.image.load("LeaderBoard/SiMA.png")
+        img_SiMA = pg.image.load("Authors/SiMA.png")
         img_SiMA = pg.transform.smoothscale(img_SiMA, (200, 200))
-        img_ShA = pg.image.load("LeaderBoard/ShA.png")
+        img_ShA = pg.image.load("Authors/ShA.png")
         img_ShA = pg.transform.smoothscale(img_ShA, (200, 200))
-        img_pin = pg.image.load("LeaderBoard/pin.png")
+        img_pin = pg.image.load("Authors/pin.png")
         img_pin = pg.transform.smoothscale(img_pin, (252, 200))
 
         self.screen.blit(ground, [0, 0])
