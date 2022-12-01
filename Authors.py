@@ -5,7 +5,7 @@ import Preferences
 if(__name__=='__main__'):
     FPS = 60
     pg.init()
-    screen = pg.display.set_mode([1000, 700])
+    screen = pg.display.set_mode([1024, 720])
 
 
 my_font_min = pg.font.SysFont('Comic Sans MS', 35)
