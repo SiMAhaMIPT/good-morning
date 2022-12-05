@@ -13,7 +13,7 @@ class Menu(Window):
         height = 60
         paddings = 20
         self.button = []
-        self.button.append(Button((rect.center[0], rect.center[1],width,height), (27, 128, 42, 100), self.doNothing,
+        self.button.append(Button((rect.center[0], rect.center[1],width,height), (27, 128, 42, 100), self.openGame,
                              text='Играть', **Preferences.BUTTON_STYLE))
         self.button.append(Button((rect.center[0], rect.center[1],width,height), (27, 128, 42, 100), self.doNothing,
                              text='Настройки', **Preferences.BUTTON_STYLE))
@@ -51,6 +51,9 @@ class Menu(Window):
         
     def openAuthors(self):
         self.action = 'authors'
+        
+    def openGame(self):
+        self.action = 'game'
     def doNothing(self):
         pass
     
