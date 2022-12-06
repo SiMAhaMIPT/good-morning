@@ -27,7 +27,7 @@ class Ball():
         self.pos = np.array(pos, dtype=float)
 
     def update(self, *args):
-        self.velocity *= (config.friction_coeff+self.add_friction)
+        self.velocity *= (config.friction_coeff)
         self.pos += self.velocity
         # Если скорость меньше config.friction_threshold, скорость=0
         if np.hypot(*self.velocity) < config.friction_threshold:
