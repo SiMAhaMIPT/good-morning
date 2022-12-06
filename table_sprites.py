@@ -57,4 +57,20 @@ class TableColoring(pygame.sprite.Sprite):
 
     def update(self, game_state):
         self.redraw()
+        self.generate_top_left_label(game_state)
+
+    def generate_top_left_label(self, game_state):
+        # generates the top left label (which players turn is it and if he can move the ball)
+        top_left_text = ""
+        if game_state.can_move_white_ball:
+            top_left_text += config.penalty_indication_text
+        if game_state.current_player.value == 1:
+            top_left_rendered_text = self.font.render(config.player1_turn_label + top_left_text,
+                                                      False, config.player1_cue_color)
+        else:
+            top_left_rendered_text = self.font.render(config.player2_turn_label + top_left_text,
+                                                      False, config.player2_cue_color)
+        text_pos = [config.table_margin + config.hole_radius * 3,
+                    config.table_margin - self.font.size(top_left_text)[1] / 2]
+        self.image.blit(top_left_rendered_text, text_pos)
 
