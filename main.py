@@ -13,7 +13,7 @@ canvas = graphics.Canvas()
 
 surface = canvas.surface#pygame.display.set_mode((Preferences.WIDTH,Preferences.HEIGHT))
 wManager = Windows()
-
+print("Hello")
 wManager.add('menu', Menu(surface))
 wManager.add('authors', Authors(surface))
 wManager.add('game', gameWindow(canvas))
