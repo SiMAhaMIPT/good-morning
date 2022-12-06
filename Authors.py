@@ -18,6 +18,7 @@ class Authors(Window):
     
     def __init__(self, surface):
         rect : pg.Rect = surface.get_rect()
+        self.surface = surface
         self.action = 0
         rb = pg.image.load('Images/return-arrow.png')
         self.button = Button((rect.topright[0] - 100, rect.topright[1] + 30,70,70), (27, 128, 42, 100), self.openMenu
@@ -38,6 +39,11 @@ class Authors(Window):
         surface.blit(img_pin, [10, 440])
         self.display_score(surface)
         self.button.update(surface)
+
+    def openWindow(self):
+        self.ss = (self.surface.get_width(), self.surface.get_height())
+        self.surface = pg.display.set_mode((Preferences.WIDTH,Preferences.HEIGHT))
+        return self
 
     def display_score(self, surface):
         """Отображает текст на экране"""
@@ -73,6 +79,9 @@ class Authors(Window):
     def callback(self):
         r = self.action
         self.action = 0
+        if(r != 0):
+            print('ko', self.ss)
+            self.surface = pg.display.set_mode(self.ss)
         return r
     
     def openMenu(self):

@@ -20,12 +20,12 @@ class Player(Enum):
     Player2 = 2
 
 class GameState:
-    def __init__(self):
+    def __init__(self, canvas):
         pygame.init()
         pygame.display.set_caption(config.window_caption)
         event.set_allowed_events()
         zope.event.subscribers.append(self.game_event_handler)
-        self.canvas = graphics.Canvas()
+        self.canvas = canvas
         self.fps_clock = pygame.time.Clock()
 
     def fps(self):

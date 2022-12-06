@@ -11,3 +11,6 @@ class Window(object):
     @abstractmethod
     def callback(self):
         pass
+    
+    def openWindow(self):
+        return self

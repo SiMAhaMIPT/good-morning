@@ -145,5 +145,9 @@ class Cue(pygame.sprite.Sprite):
                 self.angle -= math.pi
 
         game_state.redraw_all(update=False)
+        self.draw_lines(game_state, self.target_ball, prev_angle +
+                        math.pi, config.table_color)
+        self.draw_lines(game_state, self.target_ball, self.angle +
+                        math.pi, (255, 255, 255))
 
         pygame.display.flip()

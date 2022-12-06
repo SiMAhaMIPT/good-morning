@@ -7,7 +7,7 @@ class Windows:
     def open_window(self,label):
         w = self.windows.get(label)
         if w:
-            self.current = w   
+            self.current = w.openWindow() 
         
         return self.current
     
