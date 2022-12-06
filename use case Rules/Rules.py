@@ -1,3 +1,6 @@
+'''ВАЖНО!!!
+Пример использования данного пакета в папке'''
+
 import pygame
 import webbrowser
 pygame.init()
@@ -12,7 +15,7 @@ def show_rules():
     link_font = pygame.font.SysFont('Comic Sans MS', 24)
     link_color = (0, 0, 0)
 
-    ground = pygame.image.load("summer.png")
+    ground = pygame.image.load("use case Rules\summer.png")
     ground = pygame.transform.smoothscale(ground, screen.get_size())
 
     text_1 = "Для начала вспомним правила классического бильярда-восьмёрка (pool-8):"
