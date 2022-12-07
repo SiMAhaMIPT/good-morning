@@ -100,7 +100,7 @@ class BallSprite(pygame.sprite.Sprite):
                 perpendicular_velocity, rotation_angle)
             self.label_offset = np.matmul(
                 self.label_offset, transformation_matrix)
-
+            ## здесь происходит, переотрисовка полос, делаю наши шары обьемными
             if self.ball_type == BallType.Striped:
                 self.ball_stripe.update_stripe(transformation_matrix)
 
@@ -144,8 +144,7 @@ class BallSprite(pygame.sprite.Sprite):
             self.ball_stripe.draw_stripe(new_sprite)
 
 
-        grid_2d = np.mgrid[-config.ball_radius:config.ball_radius +
-                                               1, -config.ball_radius:config.ball_radius + 1]
+        grid_2d = np.mgrid[-config.ball_radius:config.ball_radius +1, -config.ball_radius:config.ball_radius + 1]
         is_outside = config.ball_radius < np.hypot(*grid_2d)
 
         for xy in itertools.product(range(config.ball_radius * 2 + 1), repeat=2):

@@ -1,8 +1,10 @@
 import numpy as np
 import pygame
-
+import cue
 import config
 import Game
+import event
+
 
 class Hole(pygame.sprite.Sprite):
     def __init__(self, x, y):
@@ -61,6 +63,7 @@ class TableColoring(pygame.sprite.Sprite):
     def update(self, game_state):
         self.redraw()
         self.generate_top_left_label(game_state)
+        self.generate_target_balls(game_state)
 
     def generate_top_left_label(self, game_state):
         # generates the top left label (which players turn is it and if he can move the ball)
@@ -76,4 +79,48 @@ class TableColoring(pygame.sprite.Sprite):
         text_pos = [config.table_margin + config.hole_radius * 3,
                     config.table_margin - self.font.size(top_left_text)[1] / 2]
         self.image.blit(top_left_rendered_text, text_pos)
+
+    def generate_target_balls(self, game_state):
+        if game_state.ball_assignment is not None:
+            start_x = np.array([config.table_margin + config.hole_radius * 3,
+                                config.resolution[0] / 2 + config.hole_radius * 3])
+            start_y = config.resolution[1] - config.table_margin - self.font.size(config.player1_target_text)[1] / 2
+            # the text needs to be moved a bit lower to keep it aligned
+            self.image.blit(self.target_ball_text[0], [start_x[0], start_y + config.ball_radius / 2])
+            self.image.blit(self.target_ball_text[1], [start_x[1], start_y + config.ball_radius / 2])
+            start_x += self.font.size(config.player2_target_text)[0]
+            for ball in game_state.balls:
+                do_draw = ball.number != 0 and ball.number != 8
+
+                # draw to player holds the players which the balls will be added to
+                draw_to_player = []
+
+                # sorts the balls into their places
+                if do_draw:
+                    if game_state.ball_assignment[Game.Player.Player1] == ball.ball_type:
+                        draw_to_player.append(1)
+                    else:
+                        draw_to_player.append(2)
+
+                if ball.number == 8:
+                    if game_state.potting_8ball[Game.Player.Player1]:
+                        draw_to_player.append(1)
+                    if game_state.potting_8ball[Game.Player.Player2]:
+                        draw_to_player.append(2)
+
+                # draws the balls
+                for i in draw_to_player:
+                    # player-1 because lists start with 0
+                    ball.create_image(self.image, (start_x[i - 1], start_y))
+                    start_x[i - 1] += config.ball_radius * 2 + config.target_ball_spacing
+
+
+
+
+
+
+
+
+
+
 
