@@ -46,6 +46,9 @@ class TableColoring(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.topleft = (0, 0)
         self.font = config.get_default_font(config.ball_radius)
+        self.target_ball_text = [self.font.render(config.player1_target_text, False, config.player1_cue_color),
+                                 self.font.render(config.player2_target_text, False, config.player2_cue_color)]
+
 
 
 
