@@ -1,6 +1,6 @@
 import pygame
 
-
+import inventory
 import event
 import Game
 import graphics
@@ -8,12 +8,15 @@ import config
 import physics
 was_closed = False
 canvas = graphics.Canvas()
+
 while not was_closed:
     game = Game.GameState(canvas)
     button_pressed = graphics.draw_main_menu(game)
 
     if button_pressed == config.play_game_button:
+
         game.start_pool()
+
         events = event.events()
 
         while not (events["closed"] or game.is_game_over or events["quit_to_main_menu"]):

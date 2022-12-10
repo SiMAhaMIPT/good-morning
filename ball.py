@@ -45,7 +45,7 @@ class StripedBall():
 
     def __init__(self):
         # каждая точка является трехмерной координатой на шаре
-        # в точке будет нарисована окружность, если ее компонента Z(т.е. 3 компонента) >0
+
 
         point_num = config.ball_stripe_point_num
         self.stripe_circle = config.ball_radius * np.column_stack((np.cos(np.linspace(0, 2 * np.pi, point_num)),
@@ -58,8 +58,10 @@ class StripedBall():
             self.stripe_circle[i] = np.matmul(stripe, transformation_matrix)
 
     def draw_stripe(self, sprite):
-        pass
-
+        for num, point in enumerate(self.stripe_circle[:-1]):
+            if point[2] >= -1:
+                pygame.draw.line(sprite, (255, 255, 255), config.ball_radius + point[:2],
+                                 config.ball_radius + self.stripe_circle[num + 1][:2], config.ball_stripe_thickness)
 class SolidBall():
     def __init__(self):
         pass
@@ -98,6 +100,11 @@ class BallSprite(pygame.sprite.Sprite):
                 perpendicular_velocity, rotation_angle)
             self.label_offset = np.matmul(
                 self.label_offset, transformation_matrix)
+            ## здесь происходит, переотрисовка полос, делаю наши шары обьемными
+            if self.ball_type == BallType.Striped:
+                self.ball_stripe.update_stripe(transformation_matrix)
+
+
 
             self.update_sprite()
             self.ball.update()
@@ -137,8 +144,7 @@ class BallSprite(pygame.sprite.Sprite):
             self.ball_stripe.draw_stripe(new_sprite)
 
 
-        grid_2d = np.mgrid[-config.ball_radius:config.ball_radius +
-                                               1, -config.ball_radius:config.ball_radius + 1]
+        grid_2d = np.mgrid[-config.ball_radius:config.ball_radius +1, -config.ball_radius:config.ball_radius + 1]
         is_outside = config.ball_radius < np.hypot(*grid_2d)
 
         for xy in itertools.product(range(config.ball_radius * 2 + 1), repeat=2):
