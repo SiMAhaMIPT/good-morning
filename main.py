@@ -21,11 +21,11 @@ wManager.add("rules", Rules(surface))
 #surface = pygame.display.set_mode((Preferences.WIDTH,Preferences.HEIGHT))
 while True:
     events = pygame.event.get()
-    wManager.get_window().check(events)
     for event in events:
         if event.type == pygame.QUIT:
             exit()
             
+    wManager.get_window().check(events)
     wManager.get_window().draw(surface)
     wManager.open_window(wManager.get_window().callback())
     pygame.display.update()
