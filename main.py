@@ -2,12 +2,11 @@ import pygame
 
 pygame.init()
 
-from gwt import gameWindow
+from GameWindow import gameWindow
 from menu import Menu
 from Authors import Authors
 from windowManager import Windows
 from Rules import Rules
-import Preferences
 import graphics
 
 canvas = graphics.Canvas()
@@ -18,7 +17,7 @@ print("Hello")
 wManager.add('menu', Menu(surface))
 wManager.add('authors', Authors(surface))
 wManager.add('game', gameWindow(canvas))
-wManager.add("rules", Rules())
+wManager.add("rules", Rules(surface))
 #surface = pygame.display.set_mode((Preferences.WIDTH,Preferences.HEIGHT))
 while True:
     events = pygame.event.get()

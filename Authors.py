@@ -81,7 +81,6 @@ class Authors(Window):
         r = self.action
         self.action = 0
         if(r != 0):
-            print('ko', self.ss)
             self.surface = pg.display.set_mode(self.ss)
         return r
     

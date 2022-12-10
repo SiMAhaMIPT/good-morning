@@ -1,16 +1,23 @@
 import pygame
 import webbrowser
+from button import Button
 from Window import Window
 pygame.init()
+import Preferences
 
 
 class Rules(Window):
     
-    def __init__(self) -> None:
+    def __init__(self, surface) -> None:
         self.running = True
+        self.action = 0
         self.link_font = pygame.font.SysFont('Comic Sans MS', 24)
         self.link_color = (0,0,0)
         self.rect = pygame.Rect(0,0,0,0)
+        rect : pygame.Rect = surface.get_rect()
+        rb = pygame.image.load('Images/return-arrow.png')
+        self.button = Button((rect.topright[0] - 100, rect.topright[1] + 30,70,70), (27, 128, 42, 100), self.openMenu
+                             , **Preferences.BUTTON_STYLE, texture=rb)
     
     
     def blit_text(surface, text, pos, font, color):
@@ -31,8 +38,10 @@ class Rules(Window):
             y += word_height  # Start on new row.
     
     
+    
     def check(self, events):
         for event in events:
+            self.button.check_event(event)
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pos = event.pos
 
@@ -46,8 +55,13 @@ class Rules(Window):
             self.link_color = (0, 0, 0)
             
     def callback(self):
-        return 0
+        r = self.action
+        self.action = 0
+        return r
     
+    def openMenu(self):
+        self.action = 'menu'
+        
     def draw(self, screen):
         ground = pygame.image.load("Images/summer.png")
         ground = pygame.transform.smoothscale(ground, screen.get_size())
@@ -61,19 +75,19 @@ class Rules(Window):
         self.rect = screen.blit(self.link_font.render("Основные правила на Wikipedia", True, self.link_color), (10, 44)) #control
         
         Rules.blit_text(screen, text_1, (10, 10), font_1, (0, 0, 0))
+        self.button.update(screen)
         
             
         
 if(__name__ =='__main__'):
         
     show = False
-    Screen = pygame.display.set_mode([1024, 720])
     clock = pygame.time.Clock()
     running = True
     
-    rs = Rules()
-    SIZE = WIDTH, HEIGHT = (1024, 720)
+    SIZE = (1024, 720)
     screen = pygame.display.set_mode(SIZE, pygame.RESIZABLE)
+    rs = Rules(screen)
     while running and running:
         events = pygame.event.get()
         for event in events:
