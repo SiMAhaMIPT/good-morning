@@ -73,8 +73,9 @@ class Authors(Window):
         surface.blit(text_surface_history_Roman_3, (280, 590))
 
 
-    def check(self, event):
-        self.button.check_event(event)
+    def check(self, events):
+        for event in events:
+            self.button.check_event(event)
     
     def callback(self):
         r = self.action

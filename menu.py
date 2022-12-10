@@ -15,8 +15,8 @@ class Menu(Window):
         self.button = []
         self.button.append(Button((rect.center[0], rect.center[1],width,height), (27, 128, 42, 100), self.openGame,
                              text='Играть', **Preferences.BUTTON_STYLE))
-        self.button.append(Button((rect.center[0], rect.center[1],width,height), (27, 128, 42, 100), self.doNothing,
-                             text='Настройки', **Preferences.BUTTON_STYLE))
+        self.button.append(Button((rect.center[0], rect.center[1],width,height), (27, 128, 42, 100), self.openRules,
+                             text='Правила', **Preferences.BUTTON_STYLE))
         self.button.append(Button((rect.center[0], rect.center[1],width,height), (27, 128, 42, 100), self.openAuthors,
                              text='Авторы', **Preferences.BUTTON_STYLE))
         self.button.append(Button((rect.center[0], rect.center[1],width,height), (27, 128, 42, 100), exit,
@@ -30,9 +30,10 @@ class Menu(Window):
         self.bg = pygame.image.load("Images/dark-green-texture.jpg")
     
     
-    def check(self, event):
-        for b in self.button:
-            b.check_event(event)
+    def check(self, events):
+        for event in events:
+            for b in self.button:
+                b.check_event(event)
         
     def draw(self, surface):
         surface.blit(self.bg, (0,0))
@@ -56,5 +57,7 @@ class Menu(Window):
         self.action = 'game'
     def doNothing(self):
         pass
+    def openRules(self):
+        self.action = 'rules'
     
     
