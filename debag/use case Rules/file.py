@@ -1,4 +1,4 @@
-import Rules
+import debag.Rules as Rules
 import pygame as pg
 
 
