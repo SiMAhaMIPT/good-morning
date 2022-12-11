@@ -18,8 +18,17 @@ class gameWindow(Window):
         self.events = event.events()
         rb = pygame.image.load('Images/return-arrow.png')
         rect : pygame.Rect = canvas.surface.get_rect()
-        self.button = Button((rect.topright[0] - 100, rect.topright[1] + 30,70,70), (27, 128, 42, 100), self.doNothing
-                , **Preferences.BUTTON_STYLE, texture=rb)
+        self.buttons = list()
+        self.buttons.append(Button((rect.topright[0] - 170, rect.topright[1] + 15,40,40), (27, 128, 42, 100), self.doNothing
+                , **Preferences.BUTTON_STYLE, texture=rb))
+        self.buttons.append(Button((rect.topright[0] - 230, rect.topright[1] + 15,40,40), (27, 128, 42, 100), self.doNothing
+                , **Preferences.BUTTON_STYLE, texture=rb))
+        self.buttons.append(Button((rect.topright[0] - 290, rect.topright[1] + 15,40,40), (27, 128, 42, 100), self.doNothing
+                , **Preferences.BUTTON_STYLE, texture=rb))
+        self.buttons.append(Button((rect.topright[0] - 350, rect.topright[1] + 15,40,40), (27, 128, 42, 100), self.doNothing
+                , **Preferences.BUTTON_STYLE, texture=rb))
+        self.buttons.append(Button((rect.topright[0] - 410, rect.topright[1] + 15,40,40), (27, 128, 42, 100), self.doNothing
+                , **Preferences.BUTTON_STYLE, texture=rb))
     
     def draw(self, surf):
         ns = self.game.all_not_moving()
@@ -54,7 +63,8 @@ class gameWindow(Window):
                 self.state = 1
                 game.white_ball.clean_up(game, game.is_behind_line_break())
             
-        self.button.update(surf)
+        for b in self.buttons:
+            b.update(surf)
         
         
         
@@ -64,7 +74,8 @@ class gameWindow(Window):
     
     def check(self, ev):
         for eve in ev:
-            self.button.check_event(eve)
+            for b in self.buttons:
+                b.check_event(eve)
         self.events = event.events_m(ev)
         pass
         
