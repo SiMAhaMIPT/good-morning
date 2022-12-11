@@ -103,14 +103,32 @@ class Cue(pygame.sprite.Sprite):
     def make_invisible(self):
         self.visible = False
 
+
+    def set_up_cue(self, game_state, events):
+        initial_mouse_pos = events["mouse_pos"]
+        self.initial_mouse_dist = physics.point_distance(
+            initial_mouse_pos, self.target_ball.ball.pos)
+
+    def clean_up_cue(self, game_state, events):
+        self.draw_lines(game_state, self.target_ball, self.angle +
+                math.pi, config.table_color)
+
+        if self.displacement > config.ball_radius+config.cue_safe_displacement:
+            self.ball_hit()
+
+    def update_check_cue(self, game_state, events):
+        self.update_cue(game_state, self.initial_mouse_dist, events)
+        return events["clicked"]
+
+
     def cue_is_active(self, game_state, events):
         initial_mouse_pos = events["mouse_pos"]
-        initial_mouse_dist = physics.point_distance(
+        self.initial_mouse_dist = physics.point_distance(
             initial_mouse_pos, self.target_ball.ball.pos)
 
         while events["clicked"]:
             events = event.events()
-            self.update_cue(game_state, initial_mouse_dist, events)
+            self.update_cue(game_state, self.initial_mouse_dist, events)
 
         # убрать оставшиеся линии прицеливания
         self.draw_lines(game_state, self.target_ball, self.angle +

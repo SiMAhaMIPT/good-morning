@@ -166,6 +166,28 @@ class BallSprite(pygame.sprite.Sprite):
         self.ball.move_to(pos)
         self.rect.center = self.ball.pos.tolist()
 
+
+    def set_up(self,game_state, behind_separation_line=False):
+        game_state.cue.make_invisible()
+        
+    def clean_up(self,game_state, behind_separation_line=False):
+        game_state.cue.make_visible(game_state.current_player)
+        
+    def update_check(self,game_state, events, behind_separation_line=False):
+        if(events["clicked"]):
+            if np.all(np.less(config.table_margin + config.ball_radius + config.hole_radius, events["mouse_pos"])) and \
+                    np.all(np.greater(config.resolution - config.table_margin - config.ball_radius - config.hole_radius,
+                                        events["mouse_pos"])) and \
+                    not physics.check_if_ball_touches_balls(events["mouse_pos"], self.number, game_state.balls):
+                if behind_separation_line:
+                    if events["mouse_pos"][0] <= config.white_ball_initial_pos[0]:
+                        self.move_to(events["mouse_pos"])
+                else:
+                    self.move_to(events["mouse_pos"])
+            game_state.redraw_all(False)
+        
+        return events["clicked"]
+
     def is_active(self, game_state, behind_separation_line=False):
         game_state.cue.make_invisible()
         events = event.events()

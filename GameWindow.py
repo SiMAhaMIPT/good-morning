@@ -27,17 +27,32 @@ class gameWindow(Window):
             self.game.cue.make_visible(self.game.current_player)
             self.game.check_pool_rules()
             
-        self.state = ns
+        if self.state == 0 or self.state == 1:
+            self.state = ns
         game = self.game
         if self.state == 0:
             physics.resolve_all_collisions(game.balls, game.holes, game.table_sides)
-            game.redraw_all()
+            game.redraw_all(False)
         elif self.state == 1:
-            game.redraw_all()
+            game.redraw_all(False)
             if game.cue.is_clicked(self.events):
-                game.cue.cue_is_active(game, self.events)
+                self.state = 2
+                game.cue.set_up_cue(game, self.events)
+                #game.cue.cue_is_active(game, self.events)
             elif game.can_move_white_ball and game.white_ball.is_clicked(self.events):
-                game.white_ball.is_active(game, game.is_behind_line_break())
+                self.state = 3
+                #print("Muu")
+                game.white_ball.set_up(game, game.is_behind_line_break())
+                #game.white_ball.is_active(game, game.is_behind_line_break())
+        elif self.state == 2:
+            #game.cue.cue_is_active(game, self.events)
+            if not(game.cue.update_check_cue(game, self.events)):
+                self.state = 1
+                game.cue.clean_up_cue(game,self.events)
+        elif self.state == 3:
+            if not(game.white_ball.update_check(game,self.events, game.is_behind_line_break())):#is_active(game, game.is_behind_line_break())
+                self.state = 1
+                game.white_ball.clean_up(game, game.is_behind_line_break())
             
         self.button.update(surf)
         
