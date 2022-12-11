@@ -4,7 +4,11 @@ import Game
 import graphics
 import config
 import physics
+from button import Button
 from Window import Window
+if(__name__=='__main__'):
+    pygame.init()
+import Preferences
 class gameWindow(Window):
     def __init__(self, canvas):
         self.game = Game.GameState(canvas)
@@ -12,7 +16,10 @@ class gameWindow(Window):
         self.state = 0
         self.action = 0
         self.events = event.events()
-    
+        rb = pygame.image.load('Images/return-arrow.png')
+        rect : pygame.Rect = canvas.surface.get_rect()
+        self.button = Button((rect.topright[0] - 100, rect.topright[1] + 30,70,70), (27, 128, 42, 100), self.doNothing
+                , **Preferences.BUTTON_STYLE, texture=rb)
     
     def draw(self, surf):
         ns = self.game.all_not_moving()
@@ -21,7 +28,6 @@ class gameWindow(Window):
             self.game.check_pool_rules()
             
         self.state = ns
-        
         game = self.game
         if self.state == 0:
             physics.resolve_all_collisions(game.balls, game.holes, game.table_sides)
@@ -33,16 +39,21 @@ class gameWindow(Window):
             elif game.can_move_white_ball and game.white_ball.is_clicked(self.events):
                 game.white_ball.is_active(game, game.is_behind_line_break())
             
+        self.button.update(surf)
+        
+        
         
     def openWindow(self):
         self.game.start_pool()
         return self
     
     def check(self, ev):
+        for eve in ev:
+            self.button.check_event(eve)
         self.events = event.events_m(ev)
         pass
         
-        
+    
         
     def callback(self):
         if self.events['quit_to_main_menu']:
@@ -53,9 +64,10 @@ class gameWindow(Window):
             exit()
         return r
         
+    def doNothing(self):
+        pass
         
 if(__name__=='__main__'):
-    pygame.init()
     canvas = graphics.Canvas()
     gp = gameWindow(canvas)
     while True:
@@ -63,5 +75,5 @@ if(__name__=='__main__'):
         if(events['closed']):
             exit()
         gp.check(pygame.event.get())
-        gp.draw(None)
+        gp.draw(canvas.surface)
         pygame.display.update()
