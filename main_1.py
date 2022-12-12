@@ -7,10 +7,13 @@ import graphics
 import config
 import physics
 was_closed = False
+
+##canvas.background.fill(цвет заднего фона при нажатии)
 canvas = graphics.Canvas()
 
 while not was_closed:
     game = Game.GameState(canvas)
+
     button_pressed = graphics.draw_main_menu(game)
 
     if button_pressed == config.play_game_button:

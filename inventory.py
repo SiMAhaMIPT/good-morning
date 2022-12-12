@@ -3,7 +3,7 @@ import graphics
 
 def ice():
     config.friction_coeff=0.9999
-def clue:
+def clue():
     config.friction_coeff=0.8
 
 

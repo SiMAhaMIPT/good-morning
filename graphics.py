@@ -15,7 +15,8 @@ class Canvas:
         self.background = self.background.convert()
         self.background.fill(config.table_color)
         self.surface.blit(self.background, (0, 0))
-        #создаем поверхность заднего фона и закрашиваем его цветом
+            #создаем поверхность заднего фона и закрашиваем его цветом
+
 def add_separation_line(canvas):
     # разделяющая линия (где в начале белый шарик)
     pygame.draw.line(canvas.background, config.separation_line_color, (config.white_ball_initial_pos[0], 0),

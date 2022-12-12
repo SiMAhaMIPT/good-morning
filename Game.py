@@ -178,6 +178,7 @@ class GameState:
         self.all_sprites.add(self.holes)
         graphics.add_separation_line(self.canvas)
 
+
     def game_over(self, p1_won):
         font = config.get_default_font(config.game_over_label_font_size)
         if p1_won:
@@ -268,7 +269,7 @@ class GameState:
             if only_solids_potted or only_stripes_potted:
                 selected_ball_type = BallType.Striped if only_stripes_potted else BallType.Solid
                 if self.ball_assignment is None:
-                    # unpacking a singular set - SO MACH HACK
+
                     other_player, = set(Player) - {self.current_player}
                     other_ball_type, = set(BallType) - {selected_ball_type}
                     self.ball_assignment = {self.current_player: selected_ball_type, other_player: other_ball_type}
