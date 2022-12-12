@@ -78,12 +78,9 @@ class BallSprite(pygame.sprite.Sprite):
             self.ball_stripe = StripedBall()
         self.ball = Ball()
         pygame.sprite.Sprite.__init__(self)
-        # начальное расположение белого круга и числа на шаре
         self.label_offset = np.array([0, 0, config.ball_radius])
         self.label_size = config.ball_radius // 2
-        font_obj = config.get_default_font(config.ball_label_text_size)
-        self.text = font_obj.render(str(ball_number), False, (0, 0, 0))
-        self.text_length = np.array(font_obj.size(str(ball_number)))
+
         self.update_sprite()
         self.update()
         self.top_left = self.ball.pos - config.ball_radius
@@ -128,8 +125,7 @@ class BallSprite(pygame.sprite.Sprite):
             pygame.draw.circle(label, (255, 255, 255),
                                label_dimension // 2, self.label_size)
 
-            if self.number != 0:
-                label.blit(self.text, (config.ball_radius - self.text_length) / 2)
+
 
             # hack to avoid div by zero
             if self.label_offset[0] != 0:
