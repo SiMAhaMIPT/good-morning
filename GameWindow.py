@@ -27,7 +27,7 @@ class gameWindow(Window):
         self.buttons.append(Button((rect.topright[0] - 170, rect.topright[1] + 15,40,40), (27, 128, 42, 100), inventory.glue
                 , **Preferences.BUTTON_STYLE, texture=glue))
         self.buttons.append(Button((rect.topright[0] - 230, rect.topright[1] + 15,40,40), (27, 128, 42, 100), inventory.ice
-                , **Preferences.BUTTON_STYLE, texture=ice))
+                , **Preferences.BUTTON_STYLE, texture=rb))
         self.buttons.append(Button((rect.topright[0] - 290, rect.topright[1] + 15,40,40), (27, 128, 42, 100), inventory.standart_friction
                 , **Preferences.BUTTON_STYLE, texture=rb))
         self.buttons.append(Button((rect.topright[0] - 350, rect.topright[1] + 15,40,40), (27, 128, 42, 100), inventory.inelastic_col
