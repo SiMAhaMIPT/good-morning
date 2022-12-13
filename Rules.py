@@ -11,7 +11,7 @@ class Rules(Window):
     def __init__(self, surface) -> None:
         self.running = True
         self.action = 0
-        self.link_font = pygame.font.SysFont('Comic Sans MS', 24)
+        self.link_font = pygame.font.Font('Caveat-VariableFont_wght.ttf', 24)
         self.link_color = (0,0,0)
         self.rect = pygame.Rect(0,0,0,0)
         rect : pygame.Rect = surface.get_rect()
@@ -67,12 +67,12 @@ class Rules(Window):
         ground = pygame.transform.smoothscale(ground, screen.get_size())
 
         text_1 = "Для начала вспомним правила классического бильярда-восьмёрка (pool-8): \n \nТак же команда разработчиков добавила дополнительные режимы: \n1. Классичаский режим \n2. Пониженный коэффицент трения (Лёд) \n3. Повышенный коэффицент трения (Клей) \n4. Абсолютно упругие соударения (резиновые мачики) \n5. Неупругие соударения (пластелиновые мячики) \nИгрок может менять их на своё усмотрение, как перед ударом, так и в процессе движения шаров."
-        font_1 = pygame.font.SysFont('Comic Sans MS', 24)
+        font_1 = pygame.font.Font('Caveat-VariableFont_wght.ttf', 24)
 
 
         screen.fill((255, 255, 255))
         screen.blit(ground, [0, 0])
-        self.rect = screen.blit(self.link_font.render("Основные правила на Wikipedia", True, self.link_color), (10, 44)) #control
+        self.rect = screen.blit(self.link_font.render("Основные правила на Wikipedia", True, self.link_color), (9, 41)) #control
         
         Rules.blit_text(screen, text_1, (10, 10), font_1, (0, 0, 0))
         self.button.update(screen)
