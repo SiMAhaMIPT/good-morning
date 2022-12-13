@@ -17,11 +17,11 @@ class gameWindow(Window):
         self.state = 0
         self.action = 0
         self.events = event.events()
-        rb = pygame.image.load('Images/return-arrow.png')
         glue = pygame.image.load('Images/GLUE.png')
         ice = pygame.image.load('Images/ICE.png') 
-        elastic = = pygame.image.load('Images/elastic.png') 
-        inelastic = = pygame.image.load('Images/inelastic.png') 
+        elastic =  pygame.image.load('Images/elastic.png') 
+        inelastic =  pygame.image.load('Images/inelastic.png') 
+        _8_ = pygame.image.load('Images/8.png') 
         rect : pygame.Rect = canvas.surface.get_rect()
         self.buttons = list()
         self.buttons.append(Button((rect.topright[0] - 170, rect.topright[1] + 15,40,40), (27, 128, 42, 100), inventory.glue
@@ -29,7 +29,7 @@ class gameWindow(Window):
         self.buttons.append(Button((rect.topright[0] - 230, rect.topright[1] + 15,40,40), (27, 128, 42, 100), inventory.ice
                 , **Preferences.BUTTON_STYLE, texture=ice))
         self.buttons.append(Button((rect.topright[0] - 290, rect.topright[1] + 15,40,40), (27, 128, 42, 100), inventory.standart
-                , **Preferences.BUTTON_STYLE, texture=rb))
+                , **Preferences.BUTTON_STYLE, texture=_8_))
         self.buttons.append(Button((rect.topright[0] - 350, rect.topright[1] + 15,40,40), (27, 128, 42, 100), inventory.inelastic_col
                 , **Preferences.BUTTON_STYLE, texture=inelastic))
         self.buttons.append(Button((rect.topright[0] - 410, rect.topright[1] + 15,40,40), (27, 128, 42, 100), inventory.elastic_col
