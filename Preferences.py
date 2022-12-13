@@ -11,5 +11,5 @@ ORANGE = (255,180,0)
 BUTTON_STYLE = {"hover_color" : (20, 102, 33, 120),
                 "clicked_color" : (54, 156, 70, 150),
                 "clicked_font_color" : (40, 40, 40),
-                "font" : pygame.font.Font('Roboto-Regular.ttf',28)
+                "font" : pygame.font.Font('Caveat-VariableFont_wght.ttf',28)
 }
