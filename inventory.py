@@ -3,9 +3,10 @@ import graphics
 
 def ice():
     config.friction_coeff=0.9999
-def clue():
-    config.friction_coeff=0.8
     config.table_color =config.table_color_ice
+def glue():
+    config.friction_coeff=0.8
+    config.table_color =config.table_color_glue
 def standart_friction():
     config.friction_coeff=0.99
     config.table_color=config.table_color_standart

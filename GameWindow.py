@@ -6,6 +6,7 @@ import config
 import physics
 from button import Button
 from Window import Window
+import inventory
 if(__name__=='__main__'):
     pygame.init()
 import Preferences
@@ -19,11 +20,11 @@ class gameWindow(Window):
         rb = pygame.image.load('Images/return-arrow.png')
         rect : pygame.Rect = canvas.surface.get_rect()
         self.buttons = list()
-        self.buttons.append(Button((rect.topright[0] - 170, rect.topright[1] + 15,40,40), (27, 128, 42, 100), self.doNothing
+        self.buttons.append(Button((rect.topright[0] - 170, rect.topright[1] + 15,40,40), (27, 128, 42, 100), inventory.glue
                 , **Preferences.BUTTON_STYLE, texture=rb))
-        self.buttons.append(Button((rect.topright[0] - 230, rect.topright[1] + 15,40,40), (27, 128, 42, 100), self.doNothing
+        self.buttons.append(Button((rect.topright[0] - 230, rect.topright[1] + 15,40,40), (27, 128, 42, 100), inventory.ice
                 , **Preferences.BUTTON_STYLE, texture=rb))
-        self.buttons.append(Button((rect.topright[0] - 290, rect.topright[1] + 15,40,40), (27, 128, 42, 100), self.doNothing
+        self.buttons.append(Button((rect.topright[0] - 290, rect.topright[1] + 15,40,40), (27, 128, 42, 100), inventory.standart_friction
                 , **Preferences.BUTTON_STYLE, texture=rb))
         self.buttons.append(Button((rect.topright[0] - 350, rect.topright[1] + 15,40,40), (27, 128, 42, 100), self.doNothing
                 , **Preferences.BUTTON_STYLE, texture=rb))
@@ -74,6 +75,7 @@ class gameWindow(Window):
     
     def check(self, ev):
         for eve in ev:
+            
             for b in self.buttons:
                 b.check_event(eve)
         self.events = event.events_m(ev)
@@ -91,7 +93,7 @@ class gameWindow(Window):
         return r
         
     def doNothing(self):
-        pass
+        print("hell")
         
 if(__name__=='__main__'):
     canvas = graphics.Canvas()
