@@ -8,7 +8,7 @@ import config
 import physics
 was_closed = False
 
-##canvas.background.fill(цвет заднего фона при нажатии)
+
 canvas = graphics.Canvas()
 
 while not was_closed:

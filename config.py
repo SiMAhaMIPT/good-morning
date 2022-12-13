@@ -17,15 +17,16 @@ def set_max_resolution():
 fullscreen = False
 # полноэкранное разрешение можно узнать только после инициализации экрана
 if not fullscreen:
-    resolution = np.array([1000, 500])
+    resolution = np.array([1024, 720])
 window_caption = "Pool"
 fps_limit = 60
 
 # table settings
-table_margin = 50
+table_margin = 100
 table_side_color = 	(128, 64, 48)
-table_color1=(176, 224, 230)
+table_color_ice=(176, 224, 230)
 table_color = (0, 214, 120)
+table_color_standart=(0, 214, 120)
 separation_line_color = (255, 255, 255)
 hole_radius = 20
 middle_hole_offset = np.array([[-hole_radius * 2, hole_radius], [-hole_radius, 0],

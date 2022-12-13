@@ -35,7 +35,7 @@ class TableSide():
             else:
                 self.size[1] += 1
 
-# draws the yellow part of the table
+
 class TableColoring(pygame.sprite.Sprite):
     def __init__(self, table_size, color, table_points):
         pygame.sprite.Sprite.__init__(self)

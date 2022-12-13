@@ -15,7 +15,7 @@ class Button(object):
         self.render_text()
         
         if not(self.texture == None):
-            self.texture = pg.transform.scale(self.texture, (self.rect.width * 0.8, self.rect.height * 0.8)) 
+            self.texture = pg.transform.scale(self.texture, (int(self.rect.width * 0.8), int(self.rect.height * 0.8)))
 
     def process_kwargs(self,kwargs):
         """Various optional customization you can change by passing kwargs."""
