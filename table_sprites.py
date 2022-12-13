@@ -48,8 +48,8 @@ class TableColoring(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.topleft = (0, 0)
         self.font = config.get_default_font(config.ball_radius)
-        self.target_ball_text = [self.font.render(config.player1_target_text, False, config.player1_cue_color),
-                                 self.font.render(config.player2_target_text, False, config.player2_cue_color)]
+        self.target_ball_text = [self.font.render(config.player1_target_text, False, config.cue_color_standart),
+                                 self.font.render(config.player2_target_text, False, config.cue_color_elastic)]
 
 
 
@@ -72,10 +72,10 @@ class TableColoring(pygame.sprite.Sprite):
             top_left_text += config.penalty_indication_text
         if game_state.current_player.value == 1:
             top_left_rendered_text = self.font.render(config.player1_turn_label + top_left_text,
-                                                      False, config.player1_cue_color)
+                                                      False, config.cue_color_standart)
         else:
             top_left_rendered_text = self.font.render(config.player2_turn_label + top_left_text,
-                                                      False, config.player2_cue_color)
+                                                      False, config.cue_color_elastic)
         text_pos = [config.table_margin + config.hole_radius * 3,
                     config.table_margin - self.font.size(top_left_text)[1] / 2]
         self.image.blit(top_left_rendered_text, text_pos)

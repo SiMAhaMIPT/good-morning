@@ -13,7 +13,7 @@ class Cue(pygame.sprite.Sprite):
     def __init__(self, target):
         pygame.sprite.Sprite.__init__(self)
         self.angle = 0
-        self.color = config.player1_cue_color
+        self.color = config.table_color_standart
         self.target_ball = target
         self.visible = False
         self.displacement = config.ball_radius

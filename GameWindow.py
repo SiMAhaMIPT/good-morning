@@ -26,9 +26,9 @@ class gameWindow(Window):
                 , **Preferences.BUTTON_STYLE, texture=rb))
         self.buttons.append(Button((rect.topright[0] - 290, rect.topright[1] + 15,40,40), (27, 128, 42, 100), inventory.standart_friction
                 , **Preferences.BUTTON_STYLE, texture=rb))
-        self.buttons.append(Button((rect.topright[0] - 350, rect.topright[1] + 15,40,40), (27, 128, 42, 100), self.doNothing
+        self.buttons.append(Button((rect.topright[0] - 350, rect.topright[1] + 15,40,40), (27, 128, 42, 100), inventory.inelastic_col
                 , **Preferences.BUTTON_STYLE, texture=rb))
-        self.buttons.append(Button((rect.topright[0] - 410, rect.topright[1] + 15,40,40), (27, 128, 42, 100), self.doNothing
+        self.buttons.append(Button((rect.topright[0] - 410, rect.topright[1] + 15,40,40), (27, 128, 42, 100), inventory.elastic_col
                 , **Preferences.BUTTON_STYLE, texture=rb))
     
     def draw(self, surf):

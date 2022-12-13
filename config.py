@@ -40,8 +40,11 @@ side_hole_offset = np.array([
     ])
 
 # cue settings
-player1_cue_color = (200, 100, 0)
-player2_cue_color = (0, 100, 200)
+cue_color_standart = (200, 100, 0)
+cue_color_elastic = (0, 100, 200)
+cue_color_inelastic = (0, 0, 0)
+cue_color=cue_color_standart
+
 cue_hit_power = 3
 cue_length = 250
 cue_thickness = 4
@@ -115,5 +118,3 @@ player1_turn_label = "Player 1 turn"
 player2_turn_label = "Player 2 turn"
 penalty_indication_text = " (click on the ball to move it)"
 game_over_label_font_size = 40
-
-cue_color=(255,0,0)
