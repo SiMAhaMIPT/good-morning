@@ -96,6 +96,8 @@ class Cue(pygame.sprite.Sprite):
     def make_visible(self, current_player):
         if current_player == Game.Player.Player1:
             self.color = config.player1_cue_color
+        else:
+            self.color= config.player2_cue_color
 
         self.visible = True
         self.update()

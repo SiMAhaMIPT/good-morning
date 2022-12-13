@@ -110,6 +110,8 @@ class GameState:
         self.all_sprites.clear(self.canvas.surface, self.canvas.background)
         self.all_sprites.draw(self.canvas.surface)
         self.all_sprites.update(self)
+        self.canvas.background.fill(config.table_color)
+        
         if update:
             pygame.display.flip()
         self.mark_one_frame()
