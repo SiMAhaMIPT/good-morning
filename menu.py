@@ -21,7 +21,7 @@ class Menu(Window):
                              text='Авторы', **Preferences.BUTTON_STYLE))
         self.button.append(Button((rect.center[0], rect.center[1],width,height), (27, 128, 42, 100), exit,
                              text='Выход', **Preferences.BUTTON_STYLE))
-        self.gameName = pygame.font.Font("Roboto-Regular.ttf", 76).render("The_BBbW", True, (230, 230, 230))
+        self.gameName = pygame.font.Font("Roboto-Regular.ttf", 76).render("", True, (230, 230, 230))
         center = rect.center
         for i in range(0, len(self.button)):
             cx = center[0]
