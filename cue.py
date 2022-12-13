@@ -31,6 +31,8 @@ class Cue(pygame.sprite.Sprite):
 
     def update(self, *args):
         if self.visible:
+
+            self.change_color()
             self.image = pygame.Surface(2 * self.sprite_size)
 
             self.image.fill((200, 200, 200))
@@ -96,7 +98,7 @@ class Cue(pygame.sprite.Sprite):
         self.color=config.cue_color
 
     def make_visible(self, current_player):
-        self.change_color()
+
         self.visible = True
         self.update()
 
