@@ -24,9 +24,9 @@ fps_limit = 60
 # table settings
 table_margin = 100
 table_side_color = 	(128, 64, 48)
-table_color_ice=(176, 224, 230)
-table_color_glue=(216, 224, 20)
-table_color_standart=(0, 214, 120)
+table_color_ice=(196, 216, 255)
+table_color_glue=(247, 178, 57)
+table_color_standart=(40, 150, 75)
 table_color = table_color_standart
 separation_line_color = (255, 255, 255)
 hole_radius = 20
@@ -41,7 +41,7 @@ side_hole_offset = np.array([
 
 # cue settings
 cue_color_standart = (200, 100, 0)
-cue_color_elastic = (0, 100, 200)
+cue_color_elastic = (0, 200, 200)
 cue_color_inelastic = (0, 0, 0)
 cue_color=cue_color_standart
 
