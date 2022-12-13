@@ -8,7 +8,7 @@ class GameEvent():
 
 def set_allowed_events():
     # разрешать только события нажатия клавиш, чтобы не перегружать тип процессора при проверке бесполезных событий
-    #pygame.event.set_allowed([pygame.KEYDOWN, pygame.QUIT])
+    pygame.event.set_allowed([pygame.KEYDOWN, pygame.QUIT])
     pass
 
 def events_m(events):
