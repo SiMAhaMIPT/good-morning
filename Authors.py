@@ -8,8 +8,8 @@ if(__name__=='__main__'):
     screen = pg.display.set_mode([1024, 720])
 
 
-my_font_min = pg.font.SysFont('Comic Sans MS', 35)
-my_font_max = pg.font.SysFont('Comic Sans MS', 50)
+my_font_min = pg.font.Font('Caveat-VariableFont_wght.ttf', 35)
+my_font_max = pg.font.Font('Caveat-VariableFont_wght.ttf', 50)
 
 class Authors(Window):
     
