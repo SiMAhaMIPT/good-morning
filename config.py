@@ -23,7 +23,7 @@ fps_limit = 60
 
 # table settings
 table_margin = 100
-table_side_color = 	(128, 64, 48)
+table_side_color = 	(90, 32, 8)
 table_color_ice=(196, 216, 255)
 table_color_glue=(247, 178, 57)
 table_color_standart=(40, 150, 75)
