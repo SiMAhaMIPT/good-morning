@@ -1,5 +1,7 @@
 import pygame
 
+import config
+
 pygame.init()
 
 from GameWindow import gameWindow
@@ -24,6 +26,7 @@ while True:
     for event in events:
         if event.type == pygame.QUIT:
             exit()
+
             
     wManager.get_window().check(events)
     wManager.get_window().draw(surface)
