@@ -11,6 +11,7 @@ was_closed = False
 
 canvas = graphics.Canvas()
 
+
 while not was_closed:
     game = Game.GameState(canvas)
 

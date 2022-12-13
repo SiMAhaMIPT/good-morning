@@ -31,6 +31,8 @@ class Cue(pygame.sprite.Sprite):
 
     def update(self, *args):
         if self.visible:
+
+            self.change_color()
             self.image = pygame.Surface(2 * self.sprite_size)
 
             self.image.fill((200, 200, 200))
@@ -92,15 +94,20 @@ class Cue(pygame.sprite.Sprite):
     def is_clicked(self, events):
         return events["clicked"] and self.is_point_in_cue(events["mouse_pos"])
 
+    def change_color(self):
+        self.color=config.cue_color
 
     def make_visible(self, current_player):
-        if current_player == Game.Player.Player1:
-            self.color = config.player1_cue_color
-        else:
-            self.color= config.player2_cue_color
 
         self.visible = True
         self.update()
+
+        #if current_player == Game.Player.Player1:
+            #self.color = config.player1_cue_color
+        #else:
+            #self.color= config.player2_cue_color
+
+
 
     def make_invisible(self):
         self.visible = False
