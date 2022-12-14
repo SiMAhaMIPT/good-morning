@@ -133,33 +133,6 @@ class BallSprite(pygame.sprite.Sprite):
         colorkey = (200, 200, 200)
         new_sprite.fill(self.color)
         new_sprite.set_colorkey(colorkey)
-        label_dimension = np.repeat([self.label_size * 2], 2)
-        label = pygame.Surface(label_dimension)
-        label.fill(self.color)
-
-        # 1.1 вместо 1 , чтобы избежать нулевой ширины спрайта при масштабировании
-        dist_from_centre = 1.1 - (self.label_offset[0] ** 2 +
-                                  self.label_offset[1] ** 2) / (config.ball_radius ** 2)
-
-        if self.label_offset[2] > 0:
-            pygame.draw.circle(label, (255, 255, 255),
-                               label_dimension // 2, self.label_size)
-
-
-
-            # hack to avoid div by zero
-            if self.label_offset[0] != 0:
-                angle = -math.degrees(
-                    math.atan(self.label_offset[1] / self.label_offset[0]))
-                label = pygame.transform.scale(
-                    label, (int(config.ball_radius * dist_from_centre), config.ball_radius))
-                label = pygame.transform.rotate(label, angle)
-
-        new_sprite.blit(
-            label, self.label_offset[:2] + (sprite_dimension -label.get_size()) / 2)
-
-
-
 
 
         if self.ball_type == BallType.Striped:
