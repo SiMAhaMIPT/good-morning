@@ -57,11 +57,12 @@ class StripedBall():
         for i, stripe in enumerate(self.stripe_circle):
             self.stripe_circle[i] = np.matmul(stripe, transformation_matrix)
 
-    def draw_stripe(self, sprite):
+    def draw_stripe(self, sprite,stripe_color):
         for num, point in enumerate(self.stripe_circle[:-1]):
             if point[2] >= -1:
-                pygame.draw.line(sprite, (255, 0, 0), config.ball_radius + point[:2],
+                pygame.draw.line(sprite, stripe_color, config.ball_radius + point[:2],
                                  config.ball_radius + self.stripe_circle[num + 1][:2], config.ball_stripe_thickness)
+
 
 class SolidBall():
     def __init__(self):
@@ -77,7 +78,7 @@ class SolidBall():
         for i, stripe in enumerate(self.stripe_circle):
             self.stripe_circle[i] = np.matmul(stripe, transformation_matrix)
 
-    def draw_stripe(self, sprite):
+    def draw_stripe(self, sprite,stripe_color=(255,255,255)):
         for num, point in enumerate(self.stripe_circle[:-1]):
             if point[2] >= -1:
                 pygame.draw.line(sprite, (255,255,255), config.ball_radius + point[:2],
@@ -88,6 +89,7 @@ class BallSprite(pygame.sprite.Sprite):
     def __init__(self, ball_number):
         self.number = ball_number
         self.color = config.ball_colors[ball_number]
+        self.stripe_color=config.stripe_colors[ball_number]
         if ball_number <= 8:
             self.ball_type = BallType.Solid
             self.ball_stripe = SolidBall()
@@ -136,10 +138,13 @@ class BallSprite(pygame.sprite.Sprite):
 
 
         if self.ball_type == BallType.Striped:
-            self.ball_stripe.draw_stripe(new_sprite)
-        if self.ball_type == BallType.Solid:
-            self.ball_stripe.draw_stripe(new_sprite)
 
+            stripe_color=self.stripe_color
+            self.ball_stripe.draw_stripe(new_sprite,stripe_color)
+        if self.ball_type == BallType.Solid:
+            #stripe_color=self.stripe_color
+            #self.ball_stripe.draw_stripe(new_sprite,stripe_color)
+            self.ball_stripe.draw_stripe(new_sprite)
 
         grid_2d = np.mgrid[-config.ball_radius:config.ball_radius +1, -config.ball_radius:config.ball_radius + 1]
         is_outside = config.ball_radius < np.hypot(*grid_2d)
