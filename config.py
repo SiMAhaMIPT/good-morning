@@ -10,6 +10,7 @@ def set_max_resolution():
     infoObject = pygame.display.Info()
     global resolution
     global white_ball_initial_pos
+
     resolution = np.array([infoObject.current_w, infoObject.current_h])
     white_ball_initial_pos = (resolution + [table_margin + hole_radius, 0]) * [0.25, 0.5]
 
@@ -23,7 +24,7 @@ fps_limit = 60
 
 # table settings
 table_margin = 100
-table_side_color = 	(80, 32, 8)
+table_side_color = 	(90, 32, 8)
 table_color_ice=(196, 216, 255)
 table_color_glue=(247, 178, 57)
 table_color_standart=(40, 150, 75)
@@ -70,6 +71,24 @@ ball_colors = [
     (50, 60, 120),
     (100, 0, 0),
     (0, 0, 0),
+    (255, 255, 255),
+    (255, 255, 255),
+    ((255, 255, 255)),
+    (255, 255, 255),
+    (255, 255, 255),
+    (255, 255, 255),
+    (255, 255, 255)
+]
+stripe_colors=[
+    (255,200,100),
+    (0, 200, 200),
+    (0, 0, 200),
+    (150, 0, 0),
+    (200, 0, 200),
+    (200, 0, 0),
+    (50, 60, 120),
+    (100, 0, 0),
+    (0, 0, 0),
     (0, 200, 200),
     (0, 0, 200),
     (150, 0, 0),
@@ -77,6 +96,7 @@ ball_colors = [
     (200, 0, 0),
     (50, 60, 120),
     (100, 0, 0)
+
 ]
 ball_stripe_thickness = 5
 ball_stripe_point_num = 25

@@ -48,8 +48,8 @@ class StripedBall():
 
 
         point_num = config.ball_stripe_point_num
-        self.stripe_circle = config.ball_radius * np.column_stack((np.cos(np.linspace(0, 2 * np.pi, point_num)),
-                                                                   np.sin(np.linspace(
+        self.stripe_circle = config.ball_radius * np.column_stack((np.sin(np.linspace(0, 2 * np.pi, point_num)),
+                                                                   np.cos(np.linspace(
                                                                        0, 2 * np.pi, point_num)),
                                                                    np.zeros(point_num)))
 
@@ -57,20 +57,40 @@ class StripedBall():
         for i, stripe in enumerate(self.stripe_circle):
             self.stripe_circle[i] = np.matmul(stripe, transformation_matrix)
 
-    def draw_stripe(self, sprite):
+    def draw_stripe(self, sprite,stripe_color):
         for num, point in enumerate(self.stripe_circle[:-1]):
             if point[2] >= -1:
-                pygame.draw.line(sprite, (255, 255, 255), config.ball_radius + point[:2],
-                                 config.ball_radius + self.stripe_circle[num + 1][:2], config.ball_stripe_thickness)
+                pygame.draw.line(sprite, stripe_color, config.ball_radius + point[:2],
+                                 config.ball_radius + self.stripe_circle[num + 1][:2], int(config.ball_stripe_thickness*(8/5)))
+
+
 class SolidBall():
     def __init__(self):
-        pass
+        # каждая точка является трехмерной координатой на шаре
+
+        point_num = config.ball_stripe_point_num
+        self.stripe_circle = config.ball_radius * np.column_stack((np.sin(np.linspace(0, 2 * np.pi, point_num)),
+                                                                   np.cos(np.linspace(
+                                                                       0, 2 * np.pi, point_num)),
+                                                                   np.zeros(point_num)))
+
+    def update_stripe(self, transformation_matrix):
+        for i, stripe in enumerate(self.stripe_circle):
+            self.stripe_circle[i] = np.matmul(stripe, transformation_matrix)
+
+    def draw_stripe(self, sprite,stripe_color=(255,255,255)):
+        for num, point in enumerate(self.stripe_circle[:-1]):
+            if point[2] >= -1:
+                pygame.draw.line(sprite, (255,255,255), config.ball_radius + point[:2],
+                                 config.ball_radius + self.stripe_circle[num + 1][:2], config.ball_stripe_thickness)
 
 class BallSprite(pygame.sprite.Sprite):
+
     def __init__(self, ball_number):
         self.number = ball_number
         self.color = config.ball_colors[ball_number]
-        if ball_number <= 8:
+        self.stripe_color=config.stripe_colors[ball_number]
+        if ball_number < 8:
             self.ball_type = BallType.Solid
             self.ball_stripe = SolidBall()
         else:
@@ -101,6 +121,9 @@ class BallSprite(pygame.sprite.Sprite):
             if self.ball_type == BallType.Striped:
                 self.ball_stripe.update_stripe(transformation_matrix)
 
+            if self.ball_type == BallType.Solid:
+                self.ball_stripe.update_stripe(transformation_matrix)
+
 
 
             self.update_sprite()
@@ -113,32 +136,15 @@ class BallSprite(pygame.sprite.Sprite):
         new_sprite.fill(self.color)
         new_sprite.set_colorkey(colorkey)
 
-        label_dimension = np.repeat([self.label_size * 2], 2)
-        label = pygame.Surface(label_dimension)
-        label.fill(self.color)
-
-        # 1.1 вместо 1 , чтобы избежать нулевой ширины спрайта при масштабировании
-        dist_from_centre = 1.1 - (self.label_offset[0] ** 2 +
-                                  self.label_offset[1] ** 2) / (config.ball_radius ** 2)
-
-        if self.label_offset[2] > 0:
-            pygame.draw.circle(label, (255, 255, 255),
-                               label_dimension // 2, self.label_size)
-
-
-
-            # hack to avoid div by zero
-            if self.label_offset[0] != 0:
-                angle = -math.degrees(
-                    math.atan(self.label_offset[1] / self.label_offset[0]))
-                label = pygame.transform.scale(
-                    label, (int(config.ball_radius * dist_from_centre), config.ball_radius))
-                label = pygame.transform.rotate(label, angle)
-
 
         if self.ball_type == BallType.Striped:
-            self.ball_stripe.draw_stripe(new_sprite)
 
+            stripe_color=self.stripe_color
+            self.ball_stripe.draw_stripe(new_sprite,stripe_color)
+        if self.ball_type == BallType.Solid:
+            #stripe_color=self.stripe_color
+            #self.ball_stripe.draw_stripe(new_sprite,stripe_color)
+            self.ball_stripe.draw_stripe(new_sprite)
 
         grid_2d = np.mgrid[-config.ball_radius:config.ball_radius +1, -config.ball_radius:config.ball_radius + 1]
         is_outside = config.ball_radius < np.hypot(*grid_2d)
