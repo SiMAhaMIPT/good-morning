@@ -90,7 +90,7 @@ class BallSprite(pygame.sprite.Sprite):
         self.number = ball_number
         self.color = config.ball_colors[ball_number]
         self.stripe_color=config.stripe_colors[ball_number]
-        if ball_number <= 8:
+        if ball_number < 8:
             self.ball_type = BallType.Solid
             self.ball_stripe = SolidBall()
         else:
