@@ -61,7 +61,7 @@ class StripedBall():
         for num, point in enumerate(self.stripe_circle[:-1]):
             if point[2] >= -1:
                 pygame.draw.line(sprite, stripe_color, config.ball_radius + point[:2],
-                                 config.ball_radius + self.stripe_circle[num + 1][:2], config.ball_stripe_thickness)
+                                 config.ball_radius + self.stripe_circle[num + 1][:2], int(config.ball_stripe_thickness*(8/5)))
 
 
 class SolidBall():
