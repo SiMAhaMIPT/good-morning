@@ -1,7 +1,7 @@
 import pygame
-import Preferences
 from button import Button
 from Window import Window
+import config
 
 class Menu(Window):
     
@@ -14,13 +14,13 @@ class Menu(Window):
         paddings = 20
         self.button = []
         self.button.append(Button((rect.center[0], rect.center[1],width,height), (27, 128, 42, 100), self.openGame,
-                             text='Играть', **Preferences.BUTTON_STYLE))
+                             text='Играть', **config.BUTTON_STYLE))
         self.button.append(Button((rect.center[0], rect.center[1],width,height), (27, 128, 42, 100), self.openRules,
-                             text='Правила', **Preferences.BUTTON_STYLE))
+                             text='Правила', **config.BUTTON_STYLE))
         self.button.append(Button((rect.center[0], rect.center[1],width,height), (27, 128, 42, 100), self.openAuthors,
-                             text='Авторы', **Preferences.BUTTON_STYLE))
+                             text='Авторы', **config.BUTTON_STYLE))
         self.button.append(Button((rect.center[0], rect.center[1],width,height), (27, 128, 42, 100), exit,
-                             text='Выход', **Preferences.BUTTON_STYLE))
+                             text='Выход', **config.BUTTON_STYLE))
         self.gameName = pygame.font.Font('Caveat-VariableFont_wght.ttf', 76).render("GOOD MORNING", True, (230, 230, 230))
         center = rect.center
         for i in range(0, len(self.button)):
@@ -37,7 +37,7 @@ class Menu(Window):
         
     def draw(self, surface):
         surface.blit(self.bg, (0,0))
-        s = pygame.Surface((Preferences.WIDTH, Preferences.HEIGHT), pygame.SRCALPHA)
+        s = pygame.Surface((config.WIDTH, config.HEIGHT), pygame.SRCALPHA)
         for b in self.button:
             b.update(s)
         surface.blit(s, (0, 0))

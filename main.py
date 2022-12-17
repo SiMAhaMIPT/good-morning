@@ -1,7 +1,5 @@
 import pygame
 
-import config
-
 pygame.init()
 
 from GameWindow import gameWindow
@@ -11,16 +9,21 @@ from windowManager import Windows
 from Rules import Rules
 import graphics
 
-canvas = graphics.Canvas()
 
-surface = canvas.surface#pygame.display.set_mode((Preferences.WIDTH,Preferences.HEIGHT))
+#initializing main objects
+canvas = graphics.Canvas()
+surface = canvas.surface
 wManager = Windows()
-print("Hello")
+
+
+#adding and initializing windows
 wManager.add('menu', Menu(surface))
 wManager.add('authors', Authors(surface))
 wManager.add('game', gameWindow(canvas))
 wManager.add("rules", Rules(surface))
-#surface = pygame.display.set_mode((Preferences.WIDTH,Preferences.HEIGHT))
+
+
+#main game loop
 while True:
     events = pygame.event.get()
     for event in events:
