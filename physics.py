@@ -17,7 +17,7 @@ def distance_less_equal(p1, p2, dist):
 
 def ball_collision_check(ball1, ball2):
     # проверка расстояния с последующей проверкой того, движется ли какой-либо из шаров
-    # с последующей проверкой векторной проекции, чтобы увидеть, движутся ли оба к каждым разом
+    # с последующей проверкой векторной проекции, чтобы увидеть, движутся ли оба к друг к другу
     return distance_less_equal(ball1.pos, ball2.pos, 2 * config.ball_radius) and \
            np.count_nonzero(np.concatenate((ball1.velocity, ball2.velocity))) > 0 and \
            np.dot(ball2.pos - ball1.pos, ball1.velocity - ball2.velocity) > 0

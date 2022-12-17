@@ -2,7 +2,7 @@ import itertools
 import math
 import random
 from enum import Enum
-
+import sys
 import numpy as np
 import pygame
 import zope.event
@@ -196,7 +196,10 @@ class GameState:
             event = pygame.event.wait()
             if event.type == pygame.QUIT or event.type == pygame.KEYDOWN or event.type == pygame.MOUSEBUTTONDOWN:
                 paused = False
+                sys.exit()
         self.is_game_over = True
+
+
 
     def turn_over(self, penalize):
         if not self.turn_ended:

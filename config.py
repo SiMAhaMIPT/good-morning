@@ -23,6 +23,8 @@ window_caption = "Pool"
 fps_limit = 60
 
 # table settings
+HEIGHT = 700
+WIDTH = 1000
 table_margin = 100
 table_side_color = 	(90, 32, 8)
 table_color_ice=(196, 216, 255)
@@ -138,3 +140,10 @@ player1_turn_label = "Player 1 turn"
 player2_turn_label = "Player 2 turn"
 penalty_indication_text = " (click on the ball to move it)"
 game_over_label_font_size = 40
+
+
+BUTTON_STYLE = {"hover_color" : (20, 102, 33, 120),
+                "clicked_color" : (54, 156, 70, 150),
+                "clicked_font_color" : (40, 40, 40),
+                "font" : pygame.font.Font('Caveat-VariableFont_wght.ttf',28)
+}
