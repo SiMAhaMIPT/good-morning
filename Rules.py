@@ -3,8 +3,8 @@ import webbrowser
 from button import Button
 from Window import Window
 pygame.init()
-import Preferences
 
+import config
 
 class Rules(Window):
     
@@ -17,7 +17,7 @@ class Rules(Window):
         rect : pygame.Rect = surface.get_rect()
         rb = pygame.image.load('Images/return-arrow.png')
         self.button = Button((rect.topright[0] - 100, rect.topright[1] + 30,70,70), (27, 128, 42, 100), self.openMenu
-                             , **Preferences.BUTTON_STYLE, texture=rb)
+                             , **config.BUTTON_STYLE, texture=rb)
     
     
     def blit_text(surface, text, pos, font, color):

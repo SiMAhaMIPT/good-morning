@@ -9,7 +9,6 @@ from Window import Window
 import inventory
 if(__name__=='__main__'):
     pygame.init()
-import Preferences
 class gameWindow(Window):
     def __init__(self, canvas):
         self.game = Game.GameState(canvas)
@@ -25,15 +24,15 @@ class gameWindow(Window):
         rect : pygame.Rect = canvas.surface.get_rect()
         self.buttons = list()
         self.buttons.append(Button((rect.topright[0] - 170, rect.topright[1] + 15,40,40), (27, 128, 42, 100), inventory.glue
-                , **Preferences.BUTTON_STYLE, texture=glue))
+                , **config.BUTTON_STYLE, texture=glue))
         self.buttons.append(Button((rect.topright[0] - 230, rect.topright[1] + 15,40,40), (27, 128, 42, 100), inventory.ice
-                , **Preferences.BUTTON_STYLE, texture=ice))
+                , **config.BUTTON_STYLE, texture=ice))
         self.buttons.append(Button((rect.topright[0] - 290, rect.topright[1] + 15,40,40), (27, 128, 42, 100), inventory.standart
-                , **Preferences.BUTTON_STYLE, texture=_8_))
+                , **config.BUTTON_STYLE, texture=_8_))
         self.buttons.append(Button((rect.topright[0] - 350, rect.topright[1] + 15,40,40), (27, 128, 42, 100), inventory.inelastic_col
-                , **Preferences.BUTTON_STYLE, texture=inelastic))
+                , **config.BUTTON_STYLE, texture=inelastic))
         self.buttons.append(Button((rect.topright[0] - 410, rect.topright[1] + 15,40,40), (27, 128, 42, 100), inventory.elastic_col
-                , **Preferences.BUTTON_STYLE, texture=elastic))
+                , **config.BUTTON_STYLE, texture=elastic))
     
     def draw(self, surf):
         ns = self.game.all_not_moving()
