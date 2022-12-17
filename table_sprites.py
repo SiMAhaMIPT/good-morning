@@ -28,12 +28,11 @@ class TableSide():
         self.middle = (self.line[0] + self.line[1]) / 2
         self.size = np.round(np.abs(self.line[0] - self.line[1]))
         self.length = np.hypot(*self.size)
-        if np.count_nonzero(self.size) != 2:
-            # line is perpendicular to y or x axis
-            if self.size[0] == 0:
-                self.size[0] += 1
-            else:
-                self.size[1] += 1
+
+        if self.size[0] == 0:
+            self.size[0] += 1
+        else:
+            self.size[1] += 1
 
 
 class TableColoring(pygame.sprite.Sprite):
@@ -66,7 +65,7 @@ class TableColoring(pygame.sprite.Sprite):
         self.generate_target_balls(game_state)
 
     def generate_top_left_label(self, game_state):
-        # generates the top left label (which players turn is it and if he can move the ball)
+        # generates the top left label (чей сейчас ход, и может ли он передвинуть мяч)
         top_left_text = ""
         if game_state.can_move_white_ball:
             top_left_text += config.penalty_indication_text
@@ -110,7 +109,7 @@ class TableColoring(pygame.sprite.Sprite):
 
                 # draws the balls
                 for i in draw_to_player:
-                    # player-1 because lists start with 0
+                    # i-1 because lists start with 0
                     ball.create_image(self.image, (start_x[i - 1], start_y))
                     start_x[i - 1] += config.ball_radius * 2 + config.target_ball_spacing
 

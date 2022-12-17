@@ -108,15 +108,13 @@ class BallSprite(pygame.sprite.Sprite):
 
     def update(self, *args):
         if np.hypot(*self.ball.velocity) != 0:
-            # updates label circle and number offset
             perpendicular_velocity = -np.cross(self.ball.velocity, [0, 0, 1])
             # angle formula is angle=((ballspeed*2)/(pi*r*2))*2
-            rotation_angle = -np.hypot(
-                *(self.ball.velocity)) * 2 / (config.ball_radius * np.pi)
+            rotation_angle = -np.hypot(*(self.ball.velocity)) * 2 / (config.ball_radius * np.pi)
             transformation_matrix = physics.get_rotation_matrix(
                 perpendicular_velocity, rotation_angle)
-            self.label_offset = np.matmul(
-                self.label_offset, transformation_matrix)
+            self.label_offset = np.matmul(self.label_offset, transformation_matrix)
+
             ## здесь происходит, переотрисовка полос, делаю наши шары обьемными
             if self.ball_type == BallType.Striped:
                 self.ball_stripe.update_stripe(transformation_matrix)
