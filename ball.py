@@ -98,7 +98,7 @@ class BallSprite(pygame.sprite.Sprite):
             self.ball_stripe = StripedBall()
         self.ball = Ball()
         pygame.sprite.Sprite.__init__(self)
-        self.label_offset = np.array([0, 0, config.ball_radius])
+
         self.label_size = config.ball_radius // 2
 
         self.update_sprite()
@@ -113,7 +113,7 @@ class BallSprite(pygame.sprite.Sprite):
             rotation_angle = -np.hypot(*(self.ball.velocity)) * 2 / (config.ball_radius * np.pi)
             transformation_matrix = physics.get_rotation_matrix(
                 perpendicular_velocity, rotation_angle)
-            self.label_offset = np.matmul(self.label_offset, transformation_matrix)
+
 
             ## здесь происходит, переотрисовка полос, делаю наши шары обьемными
             if self.ball_type == BallType.Striped:
