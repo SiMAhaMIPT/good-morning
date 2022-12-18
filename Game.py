@@ -196,7 +196,7 @@ class GameState:
             event = pygame.event.wait()
             if event.type == pygame.QUIT or event.type == pygame.KEYDOWN or event.type == pygame.MOUSEBUTTONDOWN:
                 paused = False
-                sys.exit()
+                #sys.exit()
         self.is_game_over = True
 
 
