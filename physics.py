@@ -17,7 +17,7 @@ def distance_less_equal(p1, p2, dist):
 
 def ball_collision_check(ball1, ball2):
     # проверка расстояния с последующей проверкой того, движется ли какой-либо из шаров
-    # с последующей проверкой векторной проекции, чтобы увидеть, движутся ли оба к друг к другу
+    # с последующей проверкой векторной проекции, чтобы увидеть, движутся ли оба к друг к другуаа
     return distance_less_equal(ball1.pos, ball2.pos, 2 * config.ball_radius) and \
            np.count_nonzero(np.concatenate((ball1.velocity, ball2.velocity))) > 0 and \
            np.dot(ball2.pos - ball1.pos, ball1.velocity - ball2.velocity) > 0
@@ -61,7 +61,7 @@ def triangle_area(side1, side2, side3):
             half_perimetre - abs(side3)))
 
 def resolve_all_collisions(balls, holes, table_sides):
-    # уничтожает все круги, которые находятся в дыре
+    # уничтожает все шары, которые находятся в дыре
 
     for ball_hole_combination in itertools.product(balls, holes):
         if distance_less_equal(ball_hole_combination[0].ball.pos, ball_hole_combination[1].pos, config.hole_radius):
@@ -114,8 +114,7 @@ def line_ball_collision_check(line, ball):
         return -config.ball_radius / 3 <= projected_distance <= \
                np.hypot(*(displacement_to_second_point)) + config.ball_radius / 3 and \
                np.hypot(*(closest_line_point - ball.pos + line.line[0])) <= \
-               config.ball_radius and np.dot(
-            perpendicular_vector, ball.velocity) <= 0
+               config.ball_radius and np.dot(perpendicular_vector, ball.velocity) <= 0
 
 def collide_line_ball(line, ball):
     displacement_to_second_point = line.line[1] - line.line[0]

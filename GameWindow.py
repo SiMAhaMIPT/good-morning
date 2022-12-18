@@ -11,6 +11,7 @@ if(__name__=='__main__'):
     pygame.init()
 class gameWindow(Window):
     def __init__(self, canvas):
+        self.canvas = canvas
         self.game = Game.GameState(canvas)
         self.game.start_pool()
         self.state = 0
@@ -73,6 +74,8 @@ class gameWindow(Window):
         
         
     def openWindow(self):
+        self.state = 0
+        #self.game = Game.GameState(self.canvas)
         self.game.start_pool()
         return self
     
@@ -87,7 +90,7 @@ class gameWindow(Window):
     
         
     def callback(self):
-        if self.events['quit_to_main_menu']:
+        if self.events['quit_to_main_menu'] or self.game.is_game_over:
             self.action = 'menu'
         r = self.action
         self.action = 0
