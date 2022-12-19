@@ -17,7 +17,7 @@ def distance_less_equal(p1, p2, dist):
 
 def ball_collision_check(ball1, ball2):
     # проверка расстояния с последующей проверкой того, движется ли какой-либо из шаров
-    # с последующей проверкой векторной проекции, чтобы увидеть, движутся ли оба к друг к другуаа
+    # с последующей проверкой векторной проекции, чтобы увидеть, движутся ли оба к друг к другу
     return distance_less_equal(ball1.pos, ball2.pos, 2 * config.ball_radius) and \
            np.count_nonzero(np.concatenate((ball1.velocity, ball2.velocity))) > 0 and \
            np.dot(ball2.pos - ball1.pos, ball1.velocity - ball2.velocity) > 0
@@ -30,7 +30,7 @@ def collide_balls(ball1, ball2):
     # проекция скорости шариков на вектор разности
     ball1_dot = np.dot(ball1.velocity, collision)
     ball2_dot = np.dot(ball2.velocity, collision)
-    # так как массы шариков одинаковые, скорость просто поменяется (из Законов сохранения)
+    # так как массы шариков одинаковые, скорость просто поменяется (из законов сохранения)
     ball1.velocity += (ball2_dot - ball1_dot) * collision * 0.5*(1+config.ball_coeff_of_restitution)
     ball2.velocity += (ball1_dot - ball2_dot) * collision * 0.5*(1+config.ball_coeff_of_restitution)
 def get_rotation_matrix(axis, theta):
@@ -62,7 +62,6 @@ def triangle_area(side1, side2, side3):
 
 def resolve_all_collisions(balls, holes, table_sides):
     # уничтожает все шары, которые находятся в дыре
-
     for ball_hole_combination in itertools.product(balls, holes):
         if distance_less_equal(ball_hole_combination[0].ball.pos, ball_hole_combination[1].pos, config.hole_radius):
             zope.event.notify(event.GameEvent("POTTED", ball_hole_combination[0]))
@@ -71,7 +70,6 @@ def resolve_all_collisions(balls, holes, table_sides):
     for line_ball_combination in itertools.product(table_sides, balls):
         if line_ball_collision_check(line_ball_combination[0], line_ball_combination[1].ball):
             collide_line_ball(line_ball_combination[0], line_ball_combination[1].ball)
-
 
     ball_list = balls.sprites()
     # ball list перемешивается для рандомизации столкновений мячей в первый раз
