@@ -120,18 +120,6 @@ friction_coeff = 0.99
 ball_coeff_of_restitution = 0.9
 table_coeff_of_restitution = 0.9
 
-# menu
-menu_text_color = (255, 255, 255)
-menu_text_selected_color = (0, 0, 255)
-menu_title_text = "Pool"
-menu_buttons = ["Play", "Exit"]
-menu_margin = 20
-menu_spacing = 10
-menu_title_font_size = 40
-menu_option_font_size = 20
-exit_button = 2
-play_game_button = 1
-
 # in-game ball target variables
 player1_target_text = 'P1 balls - '
 player2_target_text = 'P2 balls - '
@@ -140,10 +128,3 @@ player1_turn_label = "Player 1 turn"
 player2_turn_label = "Player 2 turn"
 penalty_indication_text = " (click on the ball to move it)"
 game_over_label_font_size = 40
-
-
-BUTTON_STYLE = {"hover_color" : (20, 102, 33, 120),
-                "clicked_color" : (54, 156, 70, 150),
-                "clicked_font_color" : (40, 40, 40),
-                "font" : pygame.font.Font('Caveat-VariableFont_wght.ttf',28)
-}
