@@ -1,3 +1,4 @@
+#Хорошей игры!
 import pygame
 
 pygame.init()
